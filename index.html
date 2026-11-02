@@ -35,6 +35,37 @@
 
   <!-- Pega aquí el script que quieras probar -->
   <div class="slot">
+    <script>
+  window.__tcfapi = function (command, version, callback) {
+    var tcData = {
+      tcString: '',
+      tcfPolicyVersion: 4,
+      cmpId: 0,
+      cmpVersion: 1,
+      gdprApplies: false,       // sin GDPR, la mayoría de scripts arrancan sin esperar consentimiento
+      eventStatus: 'tcloaded',
+      cmpStatus: 'loaded',
+      displayStatus: 'hidden',
+      listenerId: 1,
+      isServiceSpecific: true,
+      useNonStandardTexts: false,
+      purposeOneTreatment: false,
+      publisherCC: 'ES',
+      purpose: { consents: {}, legitimateInterests: {} },
+      vendor: { consents: {}, legitimateInterests: {} }
+    };
+    if (command === 'ping') {
+      callback({ gdprApplies: false, cmpLoaded: true, cmpStatus: 'loaded',
+                 displayStatus: 'hidden', apiVersion: '2.2', cmpVersion: 1,
+                 cmpId: 0, gvlVersion: 1, tcfPolicyVersion: 4 }, true);
+    } else if (command === 'removeEventListener') {
+      callback(true, true);
+    } else {
+      // getTCData, addEventListener...
+      callback(tcData, true);
+    }
+  };
+</script>
     <!-- code from Primis - Planeta Boca Juniors Articles -->
 <script type="text/javascript" language="javascript" src="https://live.primis.tech/live/liveView.php?s=114257"></script>
 <!-- code from Primis -->
